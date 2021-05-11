@@ -1,10 +1,10 @@
 import { handleInvalidRoute } from "./handleInvalidRoute"
 import { createPost } from "./posts/createPost"
 import { login } from "./users/login"
-import { register } from "./users/register"
+import { signup } from "./users/signup"
 
 export {
    handleInvalidRoute,
-   login, register,
+   login, signup,
    createPost
 }

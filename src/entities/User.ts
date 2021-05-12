@@ -21,6 +21,9 @@ export class User extends BaseEntity {
    readonly role: USER_ROLES
 
    @Column()
+   readonly username: string
+
+   @Column()
    readonly email: string;
 
    @Column()
@@ -32,12 +35,14 @@ export class User extends BaseEntity {
    constructor(
       id: string,
       role: string,
+      username:string,
       email: string,
       password: string
    ) {
       super()
       this.id = id
       this.role = this.toUserRole(role)
+      this.username = username
       this.email = email
       this.password = password
    }

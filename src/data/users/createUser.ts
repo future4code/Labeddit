@@ -4,5 +4,5 @@ export const createUser = (
    newUser: User
 ): void => {
 
-   User.create(newUser)
+   User.save(newUser)
 }

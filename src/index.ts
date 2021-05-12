@@ -5,6 +5,8 @@ import { config } from "dotenv"
 import { userRouter } from "./server/routers/userRouter";
 import { BaseEntity, createConnection } from "typeorm";
 import { User } from "./entities/User";
+import { Post } from "./entities/Post";
+import { postRouter } from "./server/routers/postRouter";
 
 config()
 
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/users", userRouter)
+app.use("/posts", postRouter)
 
 createConnection({
    type: "mysql",
@@ -30,7 +33,8 @@ createConnection({
    username: DB_USER,
    password: DB_PASSWORD,
    database: DB_SCHEMA,
-   entities: [User, BaseEntity]
+   entities: [Post, User, BaseEntity],
+   synchronize:true
 }).then(() => {
 
    app.listen(PORT, () => {

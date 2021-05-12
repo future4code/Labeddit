@@ -1,23 +1,23 @@
 import { Router } from "express"
 import { USER_ROLES } from "../../entities/User"
 import { userSchema } from "../../utils"
-import { login ,register} from "../handlers"
-import { authenticate,authorize,validatePayload } from "../middlewares"
+import { login, signup } from "../handlers"
+import { authenticate, authorize, validatePayload } from "../middlewares"
 
 export const userRouter = Router()
 
 userRouter.post(
-   "/register",
+   "/signup",
    validatePayload(userSchema),
-   register
+   signup
 )
 
 userRouter.post(
-   "/register/admin",
+   "/signup/admin",
    authenticate,
    authorize(USER_ROLES.ADMIN),
    validatePayload(userSchema),
-   register
+   signup
 )
 
 userRouter.post(

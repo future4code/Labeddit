@@ -3,16 +3,16 @@ import { createUser, getUserByEmail } from "../../../data";
 import { hashPassword, createToken, createUUID } from "../../../utils";
 import { User, USER_ROLES } from "../../../entities/User";
 
-export const register = async (
+export const signup = async (
    req: Request,
    res: Response
 ) => {
 
    const newUser = new User(
       createUUID(),
+      req.path.includes("admin") ? USER_ROLES.ADMIN : USER_ROLES.GUEST,
       req.body.email,
-      hashPassword(req.body.password),
-      req.path.includes("admin") ? USER_ROLES.ADMIN : USER_ROLES.GUEST
+      hashPassword(req.body.password)
    )
 
    const token = createToken({

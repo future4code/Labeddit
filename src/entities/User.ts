@@ -29,8 +29,8 @@ export class User extends BaseEntity {
    @Column()
    readonly password: string;
 
-   @OneToMany("Post", (post:Post)=> post.user)
-   readonly posts: Post[];
+   // @OneToMany("Post", (post:Post)=> post.user)
+   // readonly posts: Post[];
 
    constructor(
       id: string,

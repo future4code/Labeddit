@@ -1,31 +1,20 @@
 import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne } from "typeorm";
 import { User } from "./User";
+import {MainContent} from "./MainContent";
 
 @Entity()
-export class Post extends BaseEntity {
-
-   @PrimaryColumn()
-   readonly id: string;
+export class Post extends MainContent {
 
    @Column()
    readonly title: string
 
-   @Column()
-   readonly content: string;
-
-   @ManyToOne("User")
-   readonly user: User;
-
    constructor(
       id: string,
       title: string,
-      content: string,
+      body: string,
       user: User
    ) {
-      super()
-      this.id = id
+      super(id, body, user)
       this.title = title
-      this.content = content
-      this.user = user
    }
 }

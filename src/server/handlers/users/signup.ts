@@ -11,6 +11,7 @@ export const signup = async (
    const newUser = new User(
       createUUID(),
       req.path.includes("admin") ? USER_ROLES.ADMIN : USER_ROLES.GUEST,
+      req.body.username,
       req.body.email,
       hashPassword(req.body.password)
    )

@@ -1,14 +1,8 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
+import { Entity, PrimaryColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
-import {Post} from "./Post";
 import {BaseVote} from "./BaseVote";
 import {Comment} from "./Comment";
 
-
-enum VOTE_VALUES {
-  UP = 1,
-  DOWN = -1
-}
 
 @Entity()
 export class CommentVote extends BaseVote{
@@ -20,7 +14,7 @@ export class CommentVote extends BaseVote{
   readonly comment: Comment
 
   constructor(
-    value: VOTE_VALUES,
+    value: 1 | -1,
     commentId: string,
     user: User,
     userId: string

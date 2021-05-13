@@ -1,12 +1,5 @@
-import { Column, PrimaryColumn, ManyToOne, BaseEntity } from "typeorm";
+import {Column, PrimaryColumn, ManyToOne, BaseEntity} from "typeorm";
 import { User } from "./User";
-
-
-enum VOTE_VALUES {
-  UP = 1,
-  DOWN = -1
-}
-
 
 export class BaseVote extends BaseEntity{
 
@@ -14,20 +7,19 @@ export class BaseVote extends BaseEntity{
   readonly userId: string
 
   @Column()
-  readonly value: VOTE_VALUES
+  readonly value: 1 | -1
 
   @ManyToOne('User')
   readonly user: User
 
   constructor(
-    value: VOTE_VALUES,
+    value: 1 | -1,
     user: User,
     userId: string
   ) {
-     super()
+    super()
     this.value = value
     this.user = user
     this.userId = userId
   }
 }
-

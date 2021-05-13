@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { validateUUID } from "../../utils/uuid";
+import { validateUUID } from "../../utils";
 
 export const validateId = (
    req: Request,

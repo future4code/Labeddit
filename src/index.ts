@@ -7,6 +7,7 @@ import { createConnection } from "typeorm";
 import { User, Comment, PostVote, CommentVote } from "./entities";
 import { Post } from "./entities";
 import { postRouter } from "./server/routers/postRouter";
+import {commentRouter} from "./server/routers/commentRouter";
 
 
 config()
@@ -26,6 +27,8 @@ app.use(cors());
 
 app.use("/users", userRouter)
 app.use("/posts", postRouter)
+app.use("/comments", commentRouter)
+
 
 createConnection({
    type: "mysql",

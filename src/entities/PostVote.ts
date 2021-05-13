@@ -12,16 +12,16 @@ export class PostVote extends BaseVote {
    @ManyToOne('Post', { eager: true })
    readonly post: Post
 
-   constructor(
-      value: 1 | -1,
-      post: Post,
-      postId: string,
-      user: User,
-      userId: string
-   ) {
-      super(value, user, userId)
-      this.post = post;
-      this.postId = postId;
-   }
-}
+  constructor(
+    value: 1 | -1,
+    post: Post,
+    postId: string,
+    user: User,
+    userId: string
+  ) {
+    super(value, user, userId)
+    this.post = post;
+    this.postId = postId;
+  }
 
+}

@@ -10,6 +10,15 @@ export const postSchema = zod.object({
    body: zod.string().nonempty()
 })
 
+export const createCommentSchema = zod.object({
+   body: zod.string().nonempty()
+})
+  
+export const getCommentSchema = zod.object({
+   page: zod.string().optional(),
+   size: zod.string().optional()
+})
+ 
 export const voteSchema = zod.object({
    direction: zod.number()
 })

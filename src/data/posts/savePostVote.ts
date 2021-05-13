@@ -1,6 +1,6 @@
 import { PostVote } from "../../entities";
 
-export const createPostVote = async (
+export const savePostVote = async (
    newVote: PostVote
 ): Promise<void> => {
 

@@ -1,7 +1,6 @@
 import {Column, PrimaryColumn, ManyToOne, BaseEntity} from "typeorm";
 import { User } from "./User";
 
-
 export class BaseVote extends BaseEntity{
 
   @PrimaryColumn()
@@ -24,4 +23,3 @@ export class BaseVote extends BaseEntity{
     this.userId = userId
   }
 }
-

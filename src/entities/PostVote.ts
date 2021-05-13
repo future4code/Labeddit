@@ -1,17 +1,16 @@
 import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
-import {Post} from "./Post";
-import {BaseVote} from "./BaseVote";
-
+import { Post } from "./Post";
+import { BaseVote } from "./BaseVote";
 
 @Entity()
-export class PostVote extends BaseVote{
+export class PostVote extends BaseVote {
 
-  @PrimaryColumn()
-  readonly postId: string
+   @PrimaryColumn()
+   readonly postId: string
 
-  @ManyToOne('Post')
-  readonly post: Post
+   @ManyToOne('Post', { eager: true })
+   readonly post: Post
 
   constructor(
     value: 1 | -1,
@@ -24,5 +23,5 @@ export class PostVote extends BaseVote{
     this.post = post;
     this.postId = postId;
   }
-}
 
+}

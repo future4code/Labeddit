@@ -1,13 +1,11 @@
 import { Router } from "express"
-import { postSchema } from "../../utils"
+import { postSchema, voteSchema, getPostsSchema } from "../../utils"
 import { createPost } from "../handlers"
-import { authenticate,validatePayload } from "../middlewares"
-import {commentRouter} from "./commentRouter";
 import {createCommentSchema, getCommentSchema} from "../../utils/zod";
 import {createComment} from "../handlers/comments/createComment";
 import {getPostComments} from "../handlers/comments/getPostComments";
-import {saveCommentVote} from "../handlers/comments/votes/saveCommentVote";
-import {deleteCommentVote} from "../handlers/comments/votes/deleteCommentVote";
+import { getPosts } from "../handlers/posts/getPosts"
+import { authenticate, validateId, validatePayload } from "../middlewares"
 
 export const postRouter = Router()
 
@@ -34,5 +32,26 @@ postRouter.get(
   getPostComments
 )
 
+postRouter.get(
+   "/",
+   authenticate,
+   validatePayload(getPostsSchema),
+   getPosts
+)
 
+postRouter.post(
+   "/:id/vote",
+   authenticate,
+   validateId,
+   validatePayload(voteSchema),
+   // createPostVote
+)
+
+postRouter.put(
+   "/:id/vote",
+   authenticate,
+   validateId,
+   validatePayload(voteSchema)
+   // changePostVote
+)
 

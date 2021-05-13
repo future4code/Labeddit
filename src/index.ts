@@ -3,8 +3,8 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv"
 import { userRouter } from "./server/routers/userRouter";
-import { BaseEntity, createConnection } from "typeorm";
-import { User, Comment, PostVote, CommentVote, BaseContent, BaseVote} from "./entities";
+import { createConnection } from "typeorm";
+import { User, Comment, PostVote, CommentVote } from "./entities";
 import { Post } from "./entities";
 import { postRouter } from "./server/routers/postRouter";
 
@@ -34,10 +34,9 @@ createConnection({
    username: DB_USER,
    password: DB_PASSWORD,
    database: DB_SCHEMA,
-   entities: [ CommentVote, PostVote, Comment, Post, User],
-   synchronize:true
-}).then(() => {
-
+   entities: [CommentVote, PostVote, Comment, Post, User],
+   synchronize: true
+}).then(async () => {
    app.listen(PORT, () => {
       console.log(`...server running on port ${PORT}!`);
    })

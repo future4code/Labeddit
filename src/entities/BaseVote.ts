@@ -1,4 +1,4 @@
-import { Column, PrimaryColumn, ManyToOne } from "typeorm";
+import { Column, PrimaryColumn, ManyToOne, BaseEntity } from "typeorm";
 import { User } from "./User";
 
 
@@ -8,7 +8,7 @@ enum VOTE_VALUES {
 }
 
 
-export class BaseVote {
+export class BaseVote extends BaseEntity{
 
   @PrimaryColumn()
   readonly userId: string
@@ -24,6 +24,7 @@ export class BaseVote {
     user: User,
     userId: string
   ) {
+     super()
     this.value = value
     this.user = user
     this.userId = userId

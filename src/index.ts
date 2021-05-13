@@ -4,7 +4,7 @@ import cors from "cors";
 import { config } from "dotenv"
 import { userRouter } from "./server/routers/userRouter";
 import { BaseEntity, createConnection } from "typeorm";
-import {MainContent, User, Comment} from "./entities";
+import { User, Comment, PostVote, CommentVote, BaseContent, BaseVote} from "./entities";
 import { Post } from "./entities";
 import { postRouter } from "./server/routers/postRouter";
 
@@ -34,7 +34,7 @@ createConnection({
    username: DB_USER,
    password: DB_PASSWORD,
    database: DB_SCHEMA,
-   entities: [Comment, MainContent, Post, User, BaseEntity],
+   entities: [ CommentVote, PostVote, Comment, Post, User],
    synchronize:true
 }).then(() => {
 

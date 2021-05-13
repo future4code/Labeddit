@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from "typeorm";
+import {Entity, PrimaryColumn, Column, BaseEntity, OneToMany, ManyToMany} from "typeorm";
 import { Post } from "./Post";
+import {Vote} from "./PostVote";
 
 export enum USER_ROLES {
    GUEST = "GUEST",
@@ -29,15 +30,12 @@ export class User extends BaseEntity {
    @Column()
    readonly password: string;
 
-   // @OneToMany("Post", (post:Post)=> post.user)
-   // readonly posts: Post[];
-
    constructor(
       id: string,
       role: string,
       username:string,
       email: string,
-      password: string
+      password: string,
    ) {
       super()
       this.id = id

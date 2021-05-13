@@ -1,8 +1,7 @@
-import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import {Entity, PrimaryColumn, Column, BaseEntity, ManyToOne, ManyToMany} from "typeorm";
 import { User } from "./User";
 
-
-export class MainContent extends BaseEntity {
+export class BaseContent extends BaseEntity {
 
   @PrimaryColumn()
   readonly id: string;
@@ -16,7 +15,7 @@ export class MainContent extends BaseEntity {
   constructor(
     id: string,
     content: string,
-    user: User
+    user: User,
   ) {
     super()
     this.id = id

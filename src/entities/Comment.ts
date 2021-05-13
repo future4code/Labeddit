@@ -1,10 +1,10 @@
-import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne } from "typeorm";
+import { Entity, ManyToOne } from "typeorm";
 import { User } from "./User";
-import {MainContent} from "./MainContent";
+import {BaseContent} from "./BaseContent";
 import {Post} from "./Post";
 
 @Entity()
-export class Comment extends MainContent {
+export class Comment extends BaseContent {
 
   @ManyToOne('Post')
   readonly post: Post;

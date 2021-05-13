@@ -7,5 +7,5 @@ export const userSchema = zod.object({
 
 export const postSchema = zod.object({
    title: zod.string().nonempty(),
-   content: zod.string().nonempty()
+   body: zod.string().nonempty()
 })

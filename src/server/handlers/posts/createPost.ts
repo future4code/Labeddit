@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User, Post } from "../../../entities";
 import { createUUID, getTokenData } from "../../../utils";
+import * as data from "../../../data"
 
 export const createPost = async (
    req: Request,
@@ -18,11 +19,11 @@ export const createPost = async (
       const newPost = new Post(
          createUUID(),
          req.body.title,
-         req.body.content,
+         req.body.body,
          user
       )
 
-      await Post.save(newPost)
+      await data.createPost(newPost)
 
       res.status(201).send("Post created!")
    } catch (error) {

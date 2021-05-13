@@ -19,7 +19,7 @@ export const saveCommentVote = async (
     if (!user) return res.status(404).send("User not found")
 
     const newCommentVote = new CommentVote(
-      req.body.direction,
+      req.body.value,
       commentId,
       user,
       user.id

@@ -11,7 +11,11 @@ export const postSchema = zod.object({
    content: zod.string().nonempty()
 })
 
-export const commentSchema = zod.object({
+export const createCommentSchema = zod.object({
    body: zod.string().nonempty()
 })
 
+export const getCommentSchema = zod.object({
+   page: zod.string().optional(),
+   size: zod.string().optional()
+})

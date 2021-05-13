@@ -1,6 +1,6 @@
 import {Entity, PrimaryColumn, Column, BaseEntity, OneToMany, ManyToMany} from "typeorm";
 import { Post } from "./Post";
-import {Vote} from "./PostVote";
+
 
 export enum USER_ROLES {
    GUEST = "GUEST",

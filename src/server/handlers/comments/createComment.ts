@@ -12,6 +12,7 @@ export const createComment = async (
     const tokenData = getTokenData(
       req.headers.authorization!
     )
+    console.log('Post Id Criação: ', req.params.id)
 
     const user = await User.findOne(tokenData!.id)
     const post = await Post.findOne(req.params.id)

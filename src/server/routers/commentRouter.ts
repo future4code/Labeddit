@@ -1,20 +1,14 @@
 import { Router } from "express"
 import {authenticate, validateId, validatePayload} from "../middlewares"
-import {commentSchema} from "../../utils/zod";
+import {createCommentSchema, getCommentSchema} from "../../utils/zod";
 import {createComment} from "../handlers/comments/createComment";
 import {saveCommentVote} from "../handlers/comments/votes/saveCommentVote";
 import {deleteCommentVote} from "../handlers/comments/votes/deleteCommentVote";
+import {getPostComments} from "../handlers/comments/getPostComments";
+
 
 
 export const commentRouter = Router()
-
-commentRouter.post(
-  "/",
-  authenticate,
-  // validateId,
-  validatePayload(commentSchema),
-  createComment
-)
 
 commentRouter.post(
   "/:id/vote",

@@ -1,5 +1,5 @@
 import { getManager } from "typeorm"
-import { Post } from "../../entities/Post"
+import { Comment } from "../../entities"
 
 type searchOptions = {
   page: number
@@ -8,9 +8,9 @@ type searchOptions = {
 
 export const getPostComments = async (
   userId: string,
-  postId: string
+  postId: string,
   options: searchOptions
-): Promise<(Post & {
+): Promise<(Comment & {
   voteCount: number,
   userVoteDirection: 1 | -1
 })[]> => {
@@ -19,28 +19,28 @@ export const getPostComments = async (
 
   const offset: number = (page - 1) * size
 
-  const posts = await getManager().query(
+  const comments = await getManager().query(
     `SELECT
-          comment.*,
-            voteSum,
-            userVote.value AS userVote
-          FROM comment
-          LEFT JOIN (
-            SELECT sum(value) AS voteSum, commentId
-          FROM comment_vote
-          GROUP BY commentId
-        ) AS votes
-          ON comment.id = votes.commentId
-          LEFT JOIN (
-            SELECT *
-            FROM comment_vote
-          WHERE userId = "4ba37d70-1f8c-4bb3-a003-eb5121bf1902"
-        )  AS userVote
-          ON comment.id = userVote.commentId
-          WHERE comment.postId = "96b13669-89e1-4b1a-882e-42fce31f0a0e";
-          LIMIT ${size}
-          OFFSET ${offset}`
+        comment.*,
+        voteSum,
+        userVote.value AS userVote
+      FROM comment
+      LEFT JOIN (
+        SELECT sum(value) AS voteSum, commentId
+        FROM comment_vote
+        GROUP BY commentId
+      ) AS votes
+      ON comment.id = votes.commentId
+      LEFT JOIN (
+        SELECT *
+        FROM comment_vote
+        WHERE userId = "${userId}"
+      ) AS userVote
+      ON comment.id = userVote.commentId
+      WHERE comment.postId = "${postId}"
+      LIMIT ${size}
+      OFFSET ${offset}`
   )
-
-  return posts
+  console.log(comments)
+  return comments
 }

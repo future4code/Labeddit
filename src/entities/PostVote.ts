@@ -4,11 +4,6 @@ import {Post} from "./Post";
 import {BaseVote} from "./BaseVote";
 
 
-enum VOTE_VALUES {
-  UP = 1,
-  DOWN = -1
-}
-
 @Entity()
 export class PostVote extends BaseVote{
 
@@ -19,7 +14,7 @@ export class PostVote extends BaseVote{
   readonly post: Post
 
   constructor(
-    value: VOTE_VALUES,
+    value: 1 | -1,
     post: Post,
     postId: string,
     user: User,

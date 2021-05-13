@@ -1,4 +1,4 @@
-import { PostVote } from "../../entities";
+import { PostVote } from "../../../entities";
 
 export const savePostVote = async (
    newVote: PostVote

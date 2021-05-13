@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { PostVote } from "../../../entities";
-import { getTokenData } from "../../../utils";
-import * as database from "../../../data"
+import { PostVote } from "../../../../entities";
+import { getTokenData } from "../../../../utils";
+import * as database from "../../../../data"
 
-export const deletePostVote = async (
+export const savePostVote = async (
    req: Request,
    res: Response
 ) => {
@@ -18,9 +18,21 @@ export const deletePostVote = async (
       const post = await database.getPostById(req.params.id)
       if (!post) return res.status(404).send("Post not found")
 
-      await database.deletePostVote(user.id, post.id)
+      const vote = new PostVote(
+         req.body.direction,
+         post,
+         post.id,
+         user,
+         user.id
+      )
 
-      res.status(204).end()
+      await database.savePostVote(vote)
+
+      if (req.method === "POST")
+         res.status(201).send("Vote registered!")
+      else
+         res.status(200).end()
+         
    } catch (error) {
       res.status(500).send("Internal server error, please contact support")
    }

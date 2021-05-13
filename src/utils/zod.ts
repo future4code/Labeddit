@@ -11,5 +11,10 @@ export const postSchema = zod.object({
 })
 
 export const voteSchema = zod.object({
-   direction: zod.enum(["up", "down"])
+   direction: zod.number()
+})
+
+export const getPostsSchema = zod.object({
+   page: zod.string().optional(),
+   size: zod.string().optional(),
 })

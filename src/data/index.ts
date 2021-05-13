@@ -4,8 +4,8 @@ import { getUserById } from "./users/getUserById"
 import { createPost } from "./posts/createPost"
 import { getPosts } from "./posts/getPosts"
 import { getPostById } from "./posts/getPostById"
-import { savePostVote } from "./posts/savePostVote"
-import { deletePostVote } from "./posts/deletePostVote"
+import { savePostVote } from "./posts/votes/savePostVote"
+import { deletePostVote } from "./posts/votes/deletePostVote"
 
 export {
    createUser, getUserByEmail, getUserById,

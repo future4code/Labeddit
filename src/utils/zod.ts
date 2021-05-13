@@ -9,3 +9,7 @@ export const postSchema = zod.object({
    title: zod.string().nonempty(),
    body: zod.string().nonempty()
 })
+
+export const voteSchema = zod.object({
+   direction: zod.enum(["up", "down"])
+})

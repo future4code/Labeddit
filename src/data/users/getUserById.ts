@@ -4,8 +4,8 @@ export const getUserById = async (
    id: string
 ): Promise<User | undefined> => {
 
-   const user = await User
-      .findOne(id)
+   const [user] = await User
+      .find({ where: { id } })
 
    return user
 }

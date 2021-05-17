@@ -6,12 +6,10 @@ import {saveCommentVote} from "../handlers/comments/votes/saveCommentVote";
 import {deleteCommentVote} from "../handlers/comments/votes/deleteCommentVote";
 import {getPostComments} from "../handlers/comments/getPostComments";
 
-
-
 export const commentRouter = Router()
 
 commentRouter.post(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
   // validateId,
   // validatePayload(commentVoteSchema),
@@ -19,7 +17,7 @@ commentRouter.post(
 )
 
 commentRouter.put(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
   // validateId,
   // validatePayload(commentVoteSchema),
@@ -27,7 +25,7 @@ commentRouter.put(
 )
 
 commentRouter.delete(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
   // validateId,
   // validatePayload(commentVoteSchema),

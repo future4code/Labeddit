@@ -26,7 +26,7 @@ export const getCommentSchema = zod.object({
 })
  
 export const voteSchema = zod.object({
-   direction: zod.number()
+   direction: zod.enum(["1","-1"])
 })
 
 export const getPostsSchema = zod.object({

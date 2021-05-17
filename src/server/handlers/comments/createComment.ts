@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { User, Post } from "../../../entities";
 import { createUUID, getTokenData } from "../../../utils";
 import { Comment } from "../../../entities";
-import * as data from '../../../data/comments/createComment'
+import * as database from '../../../data/comments'
+import { getPostById, getUserById } from "../../../data";
 
 export const createComment = async (
   req: Request,
@@ -12,10 +12,9 @@ export const createComment = async (
     const tokenData = getTokenData(
       req.headers.authorization!
     )
-    console.log('Post Id Criação: ', req.params.id)
 
-    const user = await User.findOne(tokenData!.id)
-    const post = await Post.findOne(req.params.id)
+    const user = await getUserById(tokenData!.id)
+    const post = await getPostById(req.params.id)
 
     if (!user) return res.status(404).send("User not found")
     if(!post) return  res.status(404).send('Post not found')
@@ -27,7 +26,7 @@ export const createComment = async (
       post
     )
 
-    await data.createComment(newComment)
+    await database.createComment(newComment)
 
     res.status(201).send("Comment created!")
   } catch (error) {

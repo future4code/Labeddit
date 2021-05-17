@@ -1,3 +1,7 @@
+import { createComment } from "./comments/createComment"
+import { getPostComments } from "./comments/getPostComments"
+import { deleteCommentVote } from "./comments/votes/deleteCommentVote"
+import { saveCommentVote } from "./comments/votes/saveCommentVote"
 import { handleInvalidRoute } from "./handleInvalidRoute"
 import { createPost } from "./posts/createPost"
 import { getPosts } from "./posts/getPosts"
@@ -12,5 +16,9 @@ export {
    createPost,
    savePostVote,
    deletePostVote,
-   getPosts
+   getPosts,
+   createComment,
+   getPostComments,
+   saveCommentVote,
+   deleteCommentVote
 }

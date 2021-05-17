@@ -2,8 +2,7 @@ import { Router } from "express"
 import { postSchema, voteSchema, getPostsSchema } from "../../utils"
 import { createPost, savePostVote, getPosts, deletePostVote } from "../handlers"
 import {createCommentSchema, getCommentSchema} from "../../utils/zod";
-import {createComment} from "../handlers/comments/createComment";
-import {getPostComments} from "../handlers/comments/getPostComments";
+import {createComment, getPostComments} from "../handlers";
 import { authenticate, validateId, validatePayload } from "../middlewares"
 
 export const postRouter = Router()

@@ -1,4 +1,4 @@
-import {Entity, Column} from "typeorm";
+import {Entity, Column, CreateDateColumn} from "typeorm";
 import { User } from "./User";
 import {BaseContent} from "./BaseContent";
 
@@ -7,6 +7,9 @@ export class Post extends BaseContent {
 
    @Column()
    readonly title: string
+
+   @CreateDateColumn()
+   createdAt: Date
 
    constructor(
       id: string,

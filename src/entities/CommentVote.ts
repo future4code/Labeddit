@@ -1,26 +1,26 @@
 import { Entity, PrimaryColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
-import {BaseVote} from "./BaseVote";
-import {Comment} from "./Comment";
+import { BaseVote } from "./BaseVote";
+import { Comment } from "./Comment";
 
 
 @Entity()
-export class CommentVote extends BaseVote{
+export class CommentVote extends BaseVote {
 
-  @PrimaryColumn()
-  readonly commentId: string
+   @PrimaryColumn()
+   readonly commentId: string
 
-  @ManyToOne('Comment')
-  readonly comment: Comment
+   @ManyToOne('Comment')
+   readonly comment: Comment
 
-  constructor(
-    value: 1 | -1,
-    commentId: string,
-    user: User,
-    userId: string
-  ) {
-    super(value, user, userId)
-    this.commentId = commentId;
-  }
+   constructor(
+      value: 1 | -1,
+      commentId: string,
+      user: User,
+      userId: string
+   ) {
+      super(value, user, userId)
+      this.commentId = commentId;
+   }
 }
 

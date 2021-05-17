@@ -3,6 +3,8 @@ import { User, Post } from "../../../../entities";
 import { getTokenData } from "../../../../utils";
 import * as data from '../../../../data/comments/votes/saveCommentVote'
 import {CommentVote} from "../../../../entities";
+import { getUserById } from "../../../../data";
+import { getCommentById } from "../../../../data/comments";
 
 export const saveCommentVote = async (
   req: Request,
@@ -13,13 +15,15 @@ export const saveCommentVote = async (
       req.headers.authorization!
     )
 
-    const user = await User.findOne(tokenData!.id)
+    const user = await getUserById(tokenData!.id)
     const commentId = req.params.id
+    const comment = await getCommentById(commentId)
 
     if (!user) return res.status(404).send("User not found")
+    if (!comment) return res.status(404).send("Comment not found")
 
     const newCommentVote = new CommentVote(
-      req.body.value,
+      req.body.direction,
       commentId,
       user,
       user.id
@@ -34,6 +38,8 @@ export const saveCommentVote = async (
     }
 
   } catch (error) {
+     console.log(error.message);
+     
     res.status(500).send("Internal server error, please contact support")
   }
 }

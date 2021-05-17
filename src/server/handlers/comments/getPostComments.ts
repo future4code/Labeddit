@@ -14,8 +14,8 @@ export const getPostComments = async (
       req.headers.authorization!
     )
 
-    console.log('User id: ', tokenData!.id)
-    console.log('Post id: ', req.params.id)
+    const post = await database.getPostById(req.params.id)
+    if(!post)return res.status(404).send("Post not found")
 
     const comments = await database.getPostComments(
       tokenData!.id,

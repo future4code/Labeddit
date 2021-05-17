@@ -47,6 +47,7 @@ export const getPosts = async (
          WHERE userId = "${userId}"
       )  AS userVote
       ON post.id = userVote.postId
+      ORDER BY createdAt DESC
       LIMIT ${size}
       OFFSET ${offset}`
    )

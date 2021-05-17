@@ -1,36 +1,30 @@
 import { Router } from "express"
 import {authenticate, validateId, validatePayload} from "../middlewares"
-import {createCommentSchema, getCommentSchema} from "../../utils/zod";
-import {createComment} from "../handlers/comments/createComment";
-import {saveCommentVote} from "../handlers/comments/votes/saveCommentVote";
-import {deleteCommentVote} from "../handlers/comments/votes/deleteCommentVote";
-import {getPostComments} from "../handlers/comments/getPostComments";
-
-
+import {voteSchema} from "../../utils/zod";
+import {saveCommentVote,deleteCommentVote} from "../handlers";
 
 export const commentRouter = Router()
 
 commentRouter.post(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
-  // validateId,
-  // validatePayload(commentVoteSchema),
+  validateId,
+  validatePayload(voteSchema),
   saveCommentVote
 )
 
 commentRouter.put(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
-  // validateId,
-  // validatePayload(commentVoteSchema),
+  validateId,
+  validatePayload(voteSchema),
   saveCommentVote
 )
 
 commentRouter.delete(
-  "/:id/vote",
+  "/:id/votes",
   authenticate,
-  // validateId,
-  // validatePayload(commentVoteSchema),
+  validateId,
   deleteCommentVote
 )
 

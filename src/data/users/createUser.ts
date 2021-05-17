@@ -1,8 +1,8 @@
 import { User } from "../../entities/User";
 
-export const createUser = (
+export const createUser = async (
    newUser: User
-): void => {
+): Promise<void> => {
 
-   User.save(newUser)
+   await User.save(newUser)
 }

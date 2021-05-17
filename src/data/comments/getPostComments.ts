@@ -38,9 +38,10 @@ export const getPostComments = async (
       ) AS userVote
       ON comment.id = userVote.commentId
       WHERE comment.postId = "${postId}"
+      ORDER BY createdAt DESC
       LIMIT ${size}
       OFFSET ${offset}`
   )
-  console.log(comments)
+  
   return comments
 }

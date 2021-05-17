@@ -1,6 +1,12 @@
 import * as zod from "zod"
 
-export const userSchema = zod.object({
+export const signupSchema = zod.object({
+   username:zod.string().min(1),
+   email: zod.string().email(),
+   password: zod.string().min(8).max(30)
+})
+
+export const loginSchema = zod.object({
    email: zod.string().email(),
    password: zod.string().min(8).max(30)
 })

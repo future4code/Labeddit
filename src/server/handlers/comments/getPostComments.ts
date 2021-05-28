@@ -15,7 +15,7 @@ export const getPostComments = async (
     )
 
     const post = await database.getPostById(req.params.id)
-    if(!post)return res.status(404).send("Post not found")
+    if(!post)return res.status(404).send("Post não encontrado")
 
     const comments = await database.getPostComments(
       tokenData!.id,
@@ -28,8 +28,6 @@ export const getPostComments = async (
 
     res.send(comments)
   } catch (error) {
-    console.log(error.message);
-
-    res.status(500).send("Internal server error, please contact support")
+    res.status(500).send("Erro do servidor")
   }
 }

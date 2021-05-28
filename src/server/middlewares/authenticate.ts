@@ -14,7 +14,7 @@ export const authenticate = (
    if (!tokenData)
       res
          .status(401)
-         .send("Failed to authenticate. Token may be expired or missing from 'Authorization' headers")
+         .send("Falha na autenticação. Token expirado ou não inserido no campo 'Authorization' dos headers ")
    else
       next()
 }

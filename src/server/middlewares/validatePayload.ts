@@ -14,6 +14,14 @@ export const validatePayload = schema => (
       schema.parse(payload)
       next()
    } catch (error) {
-      res.status(422).send(error.message)
+      const errors = error.issues.map((e) => {
+         return {
+            [e.path[0]]: e.code
+         }
+      })
+      res.status(422).send({
+         message: 'Erro ao validar os seguintes parâmetros: ',
+         errors
+      })
    }
 }

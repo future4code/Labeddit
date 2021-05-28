@@ -7,4 +7,4 @@ export const validateId = (
    next: NextFunction
 ) => validateUUID(req.params.id)
       ? next()
-      : res.status(422).send("Invalid id")
+      : res.status(422).send("Id inválido")

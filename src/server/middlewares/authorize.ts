@@ -16,7 +16,7 @@ export const authorize = (...roles: USER_ROLES[]) => (
    if (!roles.includes(tokenData!.role))
       res
          .status(403)
-         .send("You don't have permission to request this operation")
+         .send("Você não tem permissão para realizar essa operação")
    else
       next()
 }

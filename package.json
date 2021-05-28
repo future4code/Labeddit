@@ -27,7 +27,6 @@
       "zod": "^1.11.13"
    },
    "scripts": {
-      "prestart": "clear && echo 'Starting...' ",
       "start": "ts-node ./src/index.ts",
       "dev-start": "npm run prestart && tsnd --transpile-only --ignore-watch node_modules ./src/index.ts"
    }

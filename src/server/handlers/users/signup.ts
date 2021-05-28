@@ -23,12 +23,12 @@ export const signup = async (
 
    try {
       const user = await getUserByEmail(newUser.email)
-      if (user) return res.status(409).send("Email already in use")
+      if (user) return res.status(409).send("Email já cadastrado")
       createUser(newUser)
 
       res.status(201).send({ token })
 
    } catch (error) {
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

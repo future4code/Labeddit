@@ -6,5 +6,5 @@ export const handleInvalidRoute = (
 ) => {
    res
       .status(404)
-      .send(`Invalid route: ${req.method} ${req.path}`)
+      .send(`Rota inválida: ${req.method} ${req.path}`)
 }

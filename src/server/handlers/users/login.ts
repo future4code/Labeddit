@@ -12,7 +12,7 @@ export const login = async (
       const passwordIsCorrect = comparePasswords(
          req.body.password, user ? user.password : ""
       )
-      if (!passwordIsCorrect) return res.status(401).send("Invalid credentials")
+      if (!passwordIsCorrect) return res.status(401).send("Nome de usuário ou senha inválida")
 
       const token = createToken({
          id: user!.id,
@@ -22,6 +22,6 @@ export const login = async (
       res.send({ token })
 
    } catch (error) {
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

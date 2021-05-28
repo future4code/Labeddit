@@ -17,8 +17,8 @@ export const saveCommentVote = async (
     const commentId = req.params.id
     const comment = await database.getCommentById(commentId)
 
-    if (!user) return res.status(404).send("User not found")
-    if (!comment) return res.status(404).send("Comment not found")
+    if (!user) return res.status(404).send("Usuário não encontrado")
+    if (!comment) return res.status(404).send("Comentário não encontrado")
 
     const newCommentVote = new CommentVote(
       req.body.direction,
@@ -30,14 +30,12 @@ export const saveCommentVote = async (
     await database.saveCommentVote(newCommentVote)
 
     if(req.method === 'POST') {
-      res.status(201).send("Vote saved!")
+      res.status(201).send("Voto registrado!")
     } else {
       res.status(200).end()
     }
 
   } catch (error) {
-     console.log(error.message);
-
-    res.status(500).send("Internal server error, please contact support")
+    res.status(500).send("Erro do servidor")
   }
 }

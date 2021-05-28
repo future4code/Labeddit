@@ -14,7 +14,7 @@ export const createPost = async (
 
       const user = await database.getUserById(tokenData!.id)
 
-      if (!user) return res.status(404).send("User not found")
+      if (!user) return res.status(404).send("Usuário não encontrado")
 
       const newPost = new Post(
          createUUID(),
@@ -25,8 +25,8 @@ export const createPost = async (
 
       await database.createPost(newPost)
 
-      res.status(201).send("Post created!")
+      res.status(201).send("Post criado!")
    } catch (error) {
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

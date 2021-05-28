@@ -13,15 +13,15 @@ export const deletePostVote = async (
       )
 
       const user = await database.getUserById(tokenData!.id)
-      if (!user) return res.status(404).send("User not found")
+      if (!user) return res.status(404).send("Usuário não encontrado")
 
       const post = await database.getPostById(req.params.id)
-      if (!post) return res.status(404).send("Post not found")
+      if (!post) return res.status(404).send("Post não encontrado")
 
       await database.deletePostVote(user.id, post.id)
 
       res.status(204).end()
    } catch (error) {
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

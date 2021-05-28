@@ -24,8 +24,6 @@ export const getPosts = async (
 
       res.send(posts)
    } catch (error) {
-      console.log(error.message);
-
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

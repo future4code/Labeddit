@@ -13,10 +13,10 @@ export const savePostVote = async (
       )
 
       const user = await database.getUserById(tokenData!.id)
-      if (!user) return res.status(404).send("User not found")
+      if (!user) return res.status(404).send("Usuário não encontrado")
 
       const post = await database.getPostById(req.params.id)
-      if (!post) return res.status(404).send("Post not found")
+      if (!post) return res.status(404).send("Post não encontrado")
 
       const vote = new PostVote(
          req.body.direction,
@@ -29,11 +29,11 @@ export const savePostVote = async (
       await database.savePostVote(vote)
 
       if (req.method === "POST")
-         res.status(201).send("Vote registered!")
+         res.status(201).send("Vote registrado!")
       else
          res.status(200).end()
-         
+
    } catch (error) {
-      res.status(500).send("Internal server error, please contact support")
+      res.status(500).send("Erro do servidor")
    }
 }

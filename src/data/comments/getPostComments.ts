@@ -23,7 +23,8 @@ export const getPostComments = async (
     `SELECT
         comment.*,
         voteSum,
-        userVote.value AS userVote
+        userVote.value AS userVote,
+        user.username
       FROM comment
       LEFT JOIN (
         SELECT sum(value) AS voteSum, commentId
@@ -37,11 +38,13 @@ export const getPostComments = async (
         WHERE userId = "${userId}"
       ) AS userVote
       ON comment.id = userVote.commentId
+      LEFT JOIN user
+      ON comment.userId = user.id
       WHERE comment.postId = "${postId}"
       ORDER BY createdAt DESC
       LIMIT ${size}
       OFFSET ${offset}`
   )
-  
+
   return comments
 }

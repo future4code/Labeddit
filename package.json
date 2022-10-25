@@ -26,7 +26,7 @@
    },
    "scripts": {
       "start": "node build/index.js",
-      "build": "tsc"
+      "build": "tsc",
       "dev-start": "npm run prestart && tsnd --transpile-only --ignore-watch node_modules ./src/index.ts"
    }
 }
